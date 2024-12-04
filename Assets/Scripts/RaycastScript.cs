@@ -22,10 +22,7 @@ public class RaycastScript : MonoBehaviour
         bool hitDetected = Physics.Raycast(transform.position, _finalRayDirection.normalized * rayLength, out hit, rayLength, detectionLayers); // Start, Direction * Length, Output, Max Distance, LayerMask
         outHit = hit;
 
-        if (hitDetected && !IsColliding)
-        {
-            SetCollisionState(true);
-        }
+        if (hitDetected && !IsColliding) SetCollisionState(true);
     }
 
     void SetCollisionState(bool state)
