@@ -146,7 +146,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26370857}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d1535d08ec9108845b164b9f88765c6f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5782,6 +5782,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 333946438661743228, guid: 61f4fa77cf4890444b7cdd46ee00c137, type: 3}
+      propertyPath: Gravity
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2181924389837589845, guid: 61f4fa77cf4890444b7cdd46ee00c137, type: 3}
       propertyPath: m_Name
       value: Player

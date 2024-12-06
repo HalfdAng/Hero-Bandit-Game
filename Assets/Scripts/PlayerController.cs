@@ -42,11 +42,6 @@ public class PlayerController : MonoBehaviour
     private bool _isSliding = false;
     private bool _slideInitiated = false;
 
-    [Header("Wall Running")]
-    public bool fallWhileWallRunning; // Slowly fall character while wall running
-    public float keepWallRunningSpeedThreshold = 3f; // If speed drops below this, stop wall running
-    private float _wallRunStartingSpeed; // The speed that you begin wall running with, will be maintained while you keep wall running
-
     private Vector3 _lastPosition;
     [HideInInspector] public Vector3 displacement;
 
@@ -188,7 +183,7 @@ public class PlayerController : MonoBehaviour
             if (_rigidbody.linearVelocity.magnitude < slideCancelEarlySpeedThreshold || _timeSinceSlideInitiation > slideMinTime)
             {
                 // If Player stops holding shift the slide gets cancelled
-                if (!_input.Slide) StopSliding();
+                if (!_input.Slide && !topCollider.IsColliding) StopSliding();
             }
             
             else _rigidbody.linearVelocity = newVelocity;
