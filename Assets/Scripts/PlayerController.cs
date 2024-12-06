@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     public float MoveSpeed;
     public float AirMoveSpeed;
+    public float Gravity;
 
     public float GroundDrag;
     public float AirDrag;
@@ -19,15 +20,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Ground & Wall Checkers")]
     public RaycastScript bottomCollider;
-    public RaycastScript rightCollider;
-    public RaycastScript leftCollider;
+    public RaycastScript topCollider;
 
     [Header("Jumping")]
-    public float jumpForce = 10f;
+    public float jumpHeight = 10f;
     public float slideJumpMultiplier;
     public float jumpCooldown = 1f;
     private bool _jumpInitiated = false;
-    private float _lastSpeedBeforeTakeoff;
     private float _timeSinceLastJump = 999f;
 
     [Header("Sliding")]
@@ -47,9 +46,6 @@ public class PlayerController : MonoBehaviour
     public bool fallWhileWallRunning; // Slowly fall character while wall running
     public float keepWallRunningSpeedThreshold = 3f; // If speed drops below this, stop wall running
     private float _wallRunStartingSpeed; // The speed that you begin wall running with, will be maintained while you keep wall running
-
-    private bool _isWallRunning = false;
-    private bool _onRightWall = false;
 
     private Vector3 _lastPosition;
     [HideInInspector] public Vector3 displacement;
@@ -106,6 +102,9 @@ public class PlayerController : MonoBehaviour
         Jump();
         Slide();
 
+        // Adds more gravity
+        _rigidbody.AddForce(new Vector3(0, -Gravity, 0));
+
         SetIsGrounded(bottomCollider.IsColliding);
 
         // Calculate displacement
@@ -151,11 +150,11 @@ public class PlayerController : MonoBehaviour
             // Bigger Jump while sliding
             if (!_isSliding)
             {
-                _rigidbody.linearVelocity += Vector3.up * jumpForce;
+                _rigidbody.linearVelocity += Vector3.up * Mathf.Sqrt(2 * Gravity * jumpHeight);
             }
             else
             {
-                _rigidbody.linearVelocity += Vector3.up * jumpForce * slideJumpMultiplier;
+                _rigidbody.linearVelocity += Vector3.up * Mathf.Sqrt(2 * Gravity * jumpHeight) * slideJumpMultiplier;
                 // Add bonus speed
                 StopSliding();
             }
@@ -225,137 +224,6 @@ public class PlayerController : MonoBehaviour
     void SetIsSliding(bool state)
     {
         _isSliding = state;
-    }
-
-    #endregion
-
-    #region Wall Running
-
-    void WallRun()
-    {
-        if (_jumpInitiated && !_isGrounded) // Must initiate jump, be off the ground, ...
-        {
-            if (_isWallRunning) // If already wall running, jump off
-            {
-                int directionCount = 1; // Can be up to 3 directions, magnitude can be 1, 1.25, 1.5 depending
-
-                // Jump off the wall
-                Vector3 jumpDirection = Vector3.up;
-
-                // If holding forward, add a force forward
-                if (Input.GetAxisRaw("Vertical") > 0)
-                {
-                    jumpDirection += transform.forward;
-                    directionCount++;
-                }
-
-                // If holding the horizontal direction AWAY from the wall, add that horizontal direction as well
-                if (Input.GetAxisRaw("Horizontal") < 0 && _onRightWall)
-                {
-                    jumpDirection += rightCollider.outHit.normal;
-                    directionCount++;
-                }
-                else if (Input.GetAxisRaw("Horizontal") > 0 && !_onRightWall)
-                {
-                    jumpDirection += leftCollider.outHit.normal;
-                    directionCount++;
-                }
-
-                // Normalize (otherwise you can artifically buff up speed)
-                float magnitude = 1 + (directionCount - 1) * 0.25f;
-                jumpDirection = jumpDirection.normalized * magnitude;
-
-                _rigidbody.AddForce(jumpDirection * jumpForce, ForceMode.Impulse);
-
-                StopWallRunning();
-            }
-            else // Check to see if you can START wall running
-            {
-                // ... and have a wall in contact
-                if (leftCollider.IsColliding) StartWallRunning(false);
-                else if (rightCollider.IsColliding) StartWallRunning(true);
-            }
-
-            _jumpInitiated = false;
-        }
-
-        if (_isWallRunning)
-        {
-            //? Can't remove this (what happens when flat wall ends?)
-            if (_isGrounded)
-            {
-                StopWallRunning();
-                return;
-            }
-            if (!leftCollider.IsColliding && !rightCollider.IsColliding)
-            {
-                StopWallRunning();
-                return;
-            }
-
-            //*  - THE DIRECITON -
-
-            // Which wall? where is the collider?
-            _onRightWall = rightCollider.IsColliding; // temp
-            var col = _onRightWall ? rightCollider : leftCollider;
-            Vector3 wallNormal = col.outHit.normal;
-
-            // Direction to travel along
-            Vector3 wallForward = Vector3.Cross(
-                wallNormal,
-                transform.up
-            );
-
-            // Ensure the forward direction aligns with the player's orientation (aka changing direction while running along the wall)
-            if ((transform.forward - wallForward).magnitude > (transform.forward - -wallForward).magnitude)
-            {
-                wallForward = -wallForward;
-            }
-
-            // Current negative Y velocity
-            float ySpeed = _rigidbody.linearVelocity.y;
-
-            // Apply the velocity
-            _rigidbody.linearVelocity = wallForward * _wallRunStartingSpeed;
-
-            // Threshold?
-            if (_rigidbody.linearVelocity.magnitude < keepWallRunningSpeedThreshold)
-            {
-                StopWallRunning();
-                return;
-            }
-
-            // However negative is the Y speed, half it and add it to the Y speed
-            if (fallWhileWallRunning && ySpeed < 0) _rigidbody.linearVelocity += new Vector3(0, ySpeed * 0.75f, 0);
-
-            // Add force TOWARDS the wall
-            _rigidbody.AddForce(-wallNormal * 100, ForceMode.Force);
-        }
-    }
-
-    void StartWallRunning(bool rightWall)
-    {
-        SetIsWallRunning(true);
-
-        if (!fallWhileWallRunning) _rigidbody.useGravity = false;
-
-        _wallRunStartingSpeed = _rigidbody.linearVelocity.magnitude;
-
-        Debug.Log($"WALL RUN [START] (spd: {_wallRunStartingSpeed})");
-    }
-
-    void StopWallRunning()
-    {
-        SetIsWallRunning(false);
-
-        if (!fallWhileWallRunning) _rigidbody.useGravity = true;
-
-        Debug.Log("WALL RUN [STOP]");
-    }
-
-    void SetIsWallRunning(bool state)
-    {
-        _isWallRunning = state;
     }
 
     #endregion
