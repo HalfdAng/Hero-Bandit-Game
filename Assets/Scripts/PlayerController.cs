@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private float _timeSinceSlideInitiation;
     private float _timeSinceSlide = 999f;
 
+    private CapsuleCollider _capsuleCollider;
+
     private bool _isSliding = false;
     private bool _slideInitiated = false;
 
@@ -54,10 +56,16 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody _rigidbody;
 
+    [Header("Animation")]
+    public GameObject playerObject;
+    private Animator _animator;
+
     private void Start()
     {
         _input = GetComponent<InputActions>();
 
+        _capsuleCollider = GetComponent<CapsuleCollider>();
+        _animator = playerObject.GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.freezeRotation = true;
         _lastPosition = transform.position;
@@ -65,17 +73,32 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        _animator.SetFloat("Speed", _rigidbody.linearVelocity.magnitude);
+
         _timeSinceLastJump += Time.deltaTime;
         _timeSinceSlideInitiation += Time.deltaTime;
         _timeSinceSlide += Time.deltaTime;
 
+        // Is jumping?
         if (_isGrounded)
         {
             _rigidbody.linearDamping = GroundDrag;
+            _animator.SetBool("Air", false);
         }
         else
         {
             _rigidbody.linearDamping = AirDrag;
+            _animator.SetBool("Air", true);
+        }
+
+        // Is sliding?
+        if (_isSliding)
+        {
+            _animator.SetBool("IsSliding", true);
+        }
+        else
+        {
+            _animator.SetBool("IsSliding", false);
         }
 
         if (_input.Jump && _timeSinceLastJump > jumpCooldown)
@@ -149,7 +172,10 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                _rigidbody.linearVelocity += Vector3.up * Mathf.Sqrt(2 * Gravity * jumpHeight) * slideJumpMultiplier;
+                if (_rigidbody.linearVelocity.magnitude > 1)
+                {
+                    _rigidbody.linearVelocity += Vector3.up * Mathf.Sqrt(2 * Gravity * jumpHeight) * slideJumpMultiplier;
+                }
                 // Add bonus speed
                 StopSliding();
             }
@@ -195,7 +221,9 @@ public class PlayerController : MonoBehaviour
         _slideInitiated = false;
         _timeSinceSlideInitiation = 0;
         SetIsSliding(true);
-        transform.localScale = new Vector3(1f, 0.5f, 1f);
+        // Deprecated: transform.localScale = new Vector3(1f, 0.5f, 1f);
+        _capsuleCollider.height = 1f;
+        _capsuleCollider.center = new Vector3(0, 0.5f, 0);
 
         // Add bonus speed
         float currSpeedModifier = Mathf.Clamp(_rigidbody.linearVelocity.magnitude / 40, 0, 1); // Maximum speed at 20
@@ -213,7 +241,9 @@ public class PlayerController : MonoBehaviour
         _timeSinceSlide = 0;
 
         SetIsSliding(false);
-        transform.localScale = Vector3.one;
+        // Deprecated: transform.localScale = Vector3.one;
+        _capsuleCollider.height = 2f;
+        _capsuleCollider.center = new Vector3(0, 1, 0);
     }
 
     void SetIsSliding(bool state)
