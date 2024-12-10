@@ -177,9 +177,10 @@ GameObject:
   - component: {fileID: 253472501717403926}
   - component: {fileID: 1883013984837006696}
   - component: {fileID: 4499454535493915246}
+  - component: {fileID: 263287547881990198}
   m_Layer: 0
   m_Name: FinalPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a94d8beda0cadc449d100cd3f004697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 2
+  MoveSpeed: 2.5
   AirMoveSpeed: 1.5
   Gravity: 20
   GroundDrag: 2
@@ -301,6 +302,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Jump: 0
   Slide: 0
+--- !u!114 &263287547881990198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8646470562203073841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb581d53d10d0d24183013eb2c65924d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coin: 0
+  _gem: 0
+  _crystal: 0
 --- !u!1001 &302969925127500186
 PrefabInstance:
   m_ObjectHideFlags: 0

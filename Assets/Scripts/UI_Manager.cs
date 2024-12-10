@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class UI_Manager : MonoBehaviour
 
     void Start()
     {
-        
     }
 
     private void Awake()
@@ -50,5 +50,8 @@ public class UI_Manager : MonoBehaviour
         {
             crystal.color = Color.white;
         }
+
+
+
     }
 }
