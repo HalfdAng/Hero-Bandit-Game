@@ -208,10 +208,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDead: 0
-  MoveSpeed: 3
+  MoveSpeed: 4
   AirMoveSpeed: 2
-  Gravity: 10
-  GroundDrag: 3
+  Gravity: 70
+  GroundDrag: 4
   AirDrag: 1
   PlayerHeight: 2
   WhatIsGround:
@@ -219,15 +219,15 @@ MonoBehaviour:
     m_Bits: 64
   bottomCollider: {fileID: 6903853998979273409}
   topCollider: {fileID: 1121420811614475829}
-  jumpHeight: 10
-  slideJumpMultiplier: 1.5
-  jumpCooldown: 1
-  SlideCooldown: 1
-  slideMinTime: 2
+  jumpHeight: 3
+  slideJumpMultiplier: 1.2
+  jumpCooldown: 0.1
+  SlideCooldown: 0.1
+  slideMinTime: 0.5
   slideCancelEarlySpeedThreshold: 1
-  addedSlideSpeed: 3
-  slideSpeedDampening: 0.99
-  slideSteeringPower: 0.5
+  addedSlideSpeed: 5
+  slideSpeedDampening: 0.9975
+  slideSteeringPower: 0.65
   displacement: {x: 0, y: 0, z: 0}
   orientation: {fileID: 6914778084599397565}
   playerObject: {fileID: 4951815992506667215}
@@ -253,7 +253,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
