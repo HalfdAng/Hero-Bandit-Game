@@ -4,7 +4,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 {
     [Header("References")]
     public Transform Orientation;
-    public Transform Player;
+    public GameObject Player;
     public Transform PlayerObject;
     public Rigidbody Rigidbody;
 
@@ -18,8 +18,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void Update()
     {
+        if (!Player.GetComponent<PlayerController>().CharacterActive) return;
         // rotate orientation
-        Vector3 viewDir = Player.position - new Vector3(transform.position.x, Player.position.y, transform.position.z);
+        Vector3 viewDir = Player.transform.position - new Vector3(transform.position.x, Player.transform.position.y, transform.position.z);
         Orientation.forward = viewDir.normalized;
 
         // rotate player object
