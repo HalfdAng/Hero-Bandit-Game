@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private InputActions _input;
+    public bool CharacterActive = true;
 
     [Header("Death")]
     public bool isDead;
@@ -77,6 +78,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         _animator.SetFloat("Speed", _rigidbody.linearVelocity.magnitude);
+        if (!CharacterActive) return;
 
         _timeSinceLastJump += Time.deltaTime;
         _timeSinceSlideInitiation += Time.deltaTime;
@@ -119,6 +121,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!CharacterActive) return;
         Move();
         Jump();
         Slide();
