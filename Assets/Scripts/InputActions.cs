@@ -7,23 +7,14 @@ public class InputActions : MonoBehaviour
     public bool Jump;
     public bool Slide;
 
-<<<<<<< Updated upstream
     public bool pause;
-=======
-    public bool paused;
->>>>>>> Stashed changes
 
     private void Update()
     {
         _inputSystem.Player.Enable();
         Jump = _inputSystem.Player.Jump.IsPressed();
         Slide = _inputSystem.Player.Slide.IsPressed();
-<<<<<<< Updated upstream
-        pause = _inputSystem.Player.Pause.WasPressedThisFrame();
-        pause = _inputSystem.UI.Paused.WasPressedThisFrame();
-=======
-        paused = _inputSystem.UI.Pause.WasPressedThisFrame();
->>>>>>> Stashed changes
+        //paused = _inputSystem.UI.Pause.WasPressedThisFrame();
     }
 
     private void Awake()
