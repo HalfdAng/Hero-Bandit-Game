@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Animations/Clips.meta
 guid: fea0b4cb86067404c8b4f5c5943926f3
+========
+guid: 6ab70aee4d56447429c680537fbf93ed
+>>>>>>>> Stashed changes:Assets/TextMesh Pro/Fonts.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

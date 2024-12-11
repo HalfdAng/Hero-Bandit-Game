@@ -1,12 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: 78bfe4367675311479556444f16afd7d
-folderAsset: yes
-DefaultImporter:
-  externalObjects: {}
-=======
 <<<<<<<< HEAD:Assets/Materials/FireForBiggerObjects.mat.meta
-guid: 22333cb208f37ba48a494de1e28981f4
+guid: f74c4b7b0b0e2264e85183039013d756
 NativeFormatImporter:
 ========
 guid: 78bfe4367675311479556444f16afd7d
@@ -15,7 +9,6 @@ DefaultImporter:
 >>>>>>>> 8982b96ab03360658544a8ff3d285a4535b397f8:Assets/Peepo.meta
   externalObjects: {}
   mainObjectFileID: 2100000
->>>>>>> Stashed changes
   userData: 
   assetBundleName: 
   assetBundleVariant: 

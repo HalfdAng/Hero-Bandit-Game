@@ -1,16 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-<<<<<<<< Updated upstream:Assets/Animations.meta
-guid: ceef1567a27b55c47b7fcdadde1212e6
-========
-guid: 48c95f13bfa920942a19706035bdcf51
->>>>>>>> Stashed changes:Assets/Animations/Controllers.meta
-folderAsset: yes
-DefaultImporter:
-  externalObjects: {}
-=======
 <<<<<<<< HEAD:Assets/Materials/Fire.mat.meta
-guid: a98d42c3f14750a4ca35cf4ded48ab41
+guid: 105ce0e546ccbde44a5183274976767b
 NativeFormatImporter:
 ========
 guid: ceef1567a27b55c47b7fcdadde1212e6
@@ -19,7 +9,6 @@ DefaultImporter:
 >>>>>>>> 8982b96ab03360658544a8ff3d285a4535b397f8:Assets/Animations.meta
   externalObjects: {}
   mainObjectFileID: 2100000
->>>>>>> Stashed changes
   userData: 
   assetBundleName: 
   assetBundleVariant: 

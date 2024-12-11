@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Animations/Controllers.meta
 guid: 48c95f13bfa920942a19706035bdcf51
+========
+guid: 243e06394e614e5d99fab26083b707fa
+>>>>>>>> Stashed changes:Assets/TextMesh Pro/Resources.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

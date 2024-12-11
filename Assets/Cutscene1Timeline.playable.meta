@@ -1,12 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: f54d1bd14bd3ca042bd867b519fee8cc
-folderAsset: yes
-DefaultImporter:
-  externalObjects: {}
-=======
 <<<<<<<< HEAD:Assets/Cutscene1Timeline.playable.meta
-guid: bee0395256634784aad1b289a16a0486
+guid: 65983587623690348a1276f252c2d7ac
 NativeFormatImporter:
 ========
 guid: f54d1bd14bd3ca042bd867b519fee8cc
@@ -15,7 +9,6 @@ DefaultImporter:
 >>>>>>>> 8982b96ab03360658544a8ff3d285a4535b397f8:Assets/TextMesh Pro.meta
   externalObjects: {}
   mainObjectFileID: 11400000
->>>>>>> Stashed changes
   userData: 
   assetBundleName: 
   assetBundleVariant: 

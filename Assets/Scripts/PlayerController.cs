@@ -4,6 +4,9 @@ public class PlayerController : MonoBehaviour
 {
     private InputActions _input;
 
+    [Header("Death")]
+    public bool isDead;
+
     [Header("Movement")]
     public float MoveSpeed;
     public float AirMoveSpeed;
