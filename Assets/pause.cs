@@ -18,13 +18,13 @@ public class pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (input.pause && paused == false)
+        if (input.paused && paused == false)
         {
             paused = true;
             pauseScreen.SetActive(true);
             Time.timeScale = 0f;
         }
-        else if (input.pause && paused == true)
+        else if (input.paused && paused == true)
         {
             paused = false;
             pauseScreen.SetActive(false);

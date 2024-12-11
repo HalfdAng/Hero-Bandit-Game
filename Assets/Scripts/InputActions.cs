@@ -7,7 +7,7 @@ public class InputActions : MonoBehaviour
     public bool Jump;
     public bool Slide;
 
-    public bool pause;
+    public bool paused;
 
     private void Update()
     {
