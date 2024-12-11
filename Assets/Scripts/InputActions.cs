@@ -7,10 +7,15 @@ public class InputActions : MonoBehaviour
     public bool Jump;
     public bool Slide;
 
+    public bool pause;
+
     private void Update()
     {
+        _inputSystem.Player.Enable();
         Jump = _inputSystem.Player.Jump.IsPressed();
         Slide = _inputSystem.Player.Slide.IsPressed();
+        pause = _inputSystem.Player.Pause.WasPressedThisFrame();
+        pause = _inputSystem.UI.Paused.WasPressedThisFrame();
     }
 
     private void Awake()

@@ -146,9 +146,11 @@ GameObject:
   - component: {fileID: 4160741389773798780}
   - component: {fileID: 1706033743130428332}
   - component: {fileID: 5219829393760414115}
+  - component: {fileID: 9157433770069932073}
+  - component: {fileID: 791657910035676923}
   m_Layer: 7
   m_Name: FinalPlayerRestored
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -272,6 +274,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Jump: 0
   Slide: 0
+  pause: 0
+--- !u!114 &9157433770069932073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6576445709252552023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb581d53d10d0d24183013eb2c65924d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coin: 0
+  _gem: 0
+  _crystal: 0
+--- !u!114 &791657910035676923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6576445709252552023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 400291dc6e419f74eb07c0608dd4e68a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseScreen: {fileID: 0}
+  paused: 0
 --- !u!1 &6652138384827046932
 GameObject:
   m_ObjectHideFlags: 0
