@@ -27,7 +27,6 @@ public class pause : MonoBehaviour
             Time.timeScale = 0f;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
         }
         else if (input.paused && paused == true && NoPause == false)
         {
@@ -36,7 +35,6 @@ public class pause : MonoBehaviour
             Time.timeScale = 1f;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
         }
         else if (NoPause == true)
         {
