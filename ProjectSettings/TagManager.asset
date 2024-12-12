@@ -7,6 +7,7 @@ TagManager:
   - Coin
   - Gem
   - Crystal
+  - artifact
   layers:
   - Default
   - TransparentFX

@@ -2,9 +2,16 @@ using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using TMPro;
 
 public class item_pickup : MonoBehaviour
 {
+    public Animator prompt;
+
+    private InputActions _interact;
+
+    public GameObject artifact;
+
     
     public bool _coin;
     public bool _gem;
@@ -13,7 +20,7 @@ public class item_pickup : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        _interact = GetComponent<InputActions>();
     }
 
     // Update is called once per frame
@@ -21,7 +28,7 @@ public class item_pickup : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if(other.transform.CompareTag("Coin")) //når spilleren kolliderer med et objekt med tag "Coin"
         {
@@ -40,6 +47,38 @@ public class item_pickup : MonoBehaviour
             Destroy(other.gameObject); //ødellege objektet den kolliderte med
             Debug.Log("(:)");
             _crystal = true;
+        }
+
+
+        if(other.transform.CompareTag("artifact"))
+        {
+            prompt.SetBool("fade", true);
+            if (_interact.interact == true)
+            {
+                Destroy(other.gameObject);
+                Debug.Log("aoga");
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.transform.CompareTag("artifact"))
+        {
+            if (_interact.interact == true)
+            {
+                Destroy(artifact);
+                prompt.SetBool("fade", false);
+                Debug.Log("aoga");
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.CompareTag("artifact"))
+        {
+            prompt.SetBool("fade", false);
         }
     }
 

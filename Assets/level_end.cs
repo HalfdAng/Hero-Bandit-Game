@@ -26,7 +26,8 @@ public class level_end : MonoBehaviour
     {
         if (other.transform.CompareTag("Player"))
         {
-            player.GetComponent<PlayerController>().enabled = false;
+            player.GetComponent<PlayerController>().CharacterActive = false;
+            Cursor.visible = true;
             Debug.Log("ay");
 
             fade.GetComponent<Animator>().SetBool("fade", true);
@@ -35,6 +36,7 @@ public class level_end : MonoBehaviour
             crystal.GetComponent<Animator>().SetBool("fade", true);
             time.GetComponent<Animator>().SetBool("fade", true);
             timer.GetComponent<timer>().timerActice = false;
+
         }
     }
 }

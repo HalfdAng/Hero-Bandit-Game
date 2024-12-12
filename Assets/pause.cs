@@ -23,12 +23,14 @@ public class pause : MonoBehaviour
             paused = true;
             pauseScreen.SetActive(true);
             Time.timeScale = 0f;
+            Cursor.visible = true;
         }
         else if (input.paused && paused == true)
         {
             paused = false;
             pauseScreen.SetActive(false);
             Time.timeScale = 1f;
+            Cursor.visible = false;
         }
     }
 }

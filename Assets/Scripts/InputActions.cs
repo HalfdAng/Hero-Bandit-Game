@@ -9,12 +9,15 @@ public class InputActions : MonoBehaviour
 
     public bool paused;
 
+    public bool interact;
+
     private void Update()
     {
         _inputSystem.Player.Enable();
         Jump = _inputSystem.Player.Jump.IsPressed();
         Slide = _inputSystem.Player.Slide.IsPressed();
-        //paused = _inputSystem.UI.Pause.WasPressedThisFrame();
+        paused = _inputSystem.UI.Paused.WasPressedThisFrame();
+        interact = _inputSystem.Player.Interact.IsPressed();
     }
 
     private void Awake()
