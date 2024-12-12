@@ -27,11 +27,11 @@ public class FirewallScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        _rawImage.color = new Color(1, 1, 1, 1 - Mathf.Clamp((transform.position - _playerTransform.position).magnitude / fireVignetteCoefficient + fireVignetteDisplacement, 0, 1));
         if (isActive && !_playerController.isDead)
         {
             transform.position -= new Vector3(transform.position.x - _playerTransform.position.x, 0, transform.position.z - _playerTransform.position.z).normalized * Mathf.Clamp((transform.position - _playerTransform.position).magnitude, MinSpeed, MaxSpeed) * Time.fixedDeltaTime;
             transform.LookAt(new Vector3(_playerTransform.position.x, transform.position.y, _playerTransform.position.z));
-            _rawImage.color = new Color(1, 1, 1, 1 - Mathf.Clamp((transform.position - _playerTransform.position).magnitude / fireVignetteCoefficient + fireVignetteDisplacement, 0, 1));
         }
     }
 }

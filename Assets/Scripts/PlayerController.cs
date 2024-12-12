@@ -19,11 +19,12 @@ public class PlayerController : MonoBehaviour
     [Header("Ground Check")]
     public float PlayerHeight;
     public LayerMask WhatIsGround;
+    public float groundCheckRadius = 0.4f;
+    public Vector3 groundCheckDisplacement = new Vector3(0, 0.2f, 0);
 
     private bool _isGrounded;
 
-    [Header("Ground & Wall Checkers")]
-    public RaycastScript bottomCollider;
+    [Header("Head Checker")]
     public RaycastScript topCollider;
 
     [Header("Jumping")]
@@ -129,7 +130,7 @@ public class PlayerController : MonoBehaviour
         // Adds more gravity
         _rigidbody.AddForce(new Vector3(0, -Gravity, 0));
 
-        SetIsGrounded(bottomCollider.IsColliding);
+        SetIsGrounded(Physics.CheckSphere(transform.position + groundCheckDisplacement, groundCheckRadius, WhatIsGround));
 
         // Calculate displacement
         displacement = (transform.position - _lastPosition) / Time.fixedDeltaTime; // Script source did "x 50" instead of "/ Time.fixedDeltaTime"
@@ -258,4 +259,9 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position + groundCheckDisplacement, groundCheckRadius);
+    }
 }

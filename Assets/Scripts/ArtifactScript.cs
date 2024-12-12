@@ -15,10 +15,12 @@ public class ArtifactScript : MonoBehaviour
     private Vector3 _startPosition;
     private bool _started = false;
     private float _timePassed = 0f;
+    private Color _color;
 
     private void Start()
     {
         _startPosition = transform.position;
+        _color = gameObject.GetComponent<MeshRenderer>().material.color;
     }
 
     private void Update()
@@ -29,7 +31,7 @@ public class ArtifactScript : MonoBehaviour
             transform.position += new Vector3(0, upwardsMovement * Time.deltaTime / cutsceneTime);
             transform.localScale *= Mathf.Pow(scaleMultiplier, Time.deltaTime/cutsceneTime);
 
-            gameObject.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 1 - _timePassed / cutsceneTime);
+            gameObject.GetComponent<MeshRenderer>().material.color = new Color(_color.r, _color.g, _color.b, 1 - _timePassed / cutsceneTime);
 
             if (_timePassed > cutsceneTime)
             {

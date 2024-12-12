@@ -16,6 +16,6 @@ public class FireKillMesh : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         _playerController.isDead = true;
-        Debug.Log("Player died!");
+        _playerController.CharacterActive = false;
     }
 }
