@@ -6,6 +6,8 @@ public class pause : MonoBehaviour
 
     public bool paused;
 
+    public bool NoPause;
+
     private InputActions input;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,19 +20,27 @@ public class pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (input.paused && paused == false)
+        if (input.paused && paused == false && NoPause == false)
         {
             paused = true;
             pauseScreen.SetActive(true);
             Time.timeScale = 0f;
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
-        else if (input.paused && paused == true)
+        else if (input.paused && paused == true && NoPause == false)
         {
             paused = false;
             pauseScreen.SetActive(false);
             Time.timeScale = 1f;
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else if (NoPause == true)
+        {
+            
         }
     }
 }
