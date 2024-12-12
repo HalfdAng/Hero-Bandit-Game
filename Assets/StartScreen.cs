@@ -37,5 +37,7 @@ public class StartScreen : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        Debug.Log("fuk yu");
     }
 }
