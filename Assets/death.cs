@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class death : MonoBehaviour
 {
     private PlayerController playerController;
-    public CinemachineCamera cinemachineCamera;
+    //public CinemachineCamera cinemachineCamera;
     public Animator deathText;
     public Animator deathFade;
 
@@ -24,8 +24,8 @@ public class death : MonoBehaviour
             deathText.SetBool("died", true);
             deathFade.SetBool("died", true);
             playerController.CharacterActive = false;
-            cinemachineCamera.enabled = false;
-            cinemachineCamera.GetComponent<CinemachineCamera>().enabled = false;
+            //cinemachineCamera.enabled = false;
+            //cinemachineCamera.GetComponent<CinemachineCamera>().enabled = false;
         }
     }
 }
