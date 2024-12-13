@@ -6,6 +6,7 @@ public class level_end : MonoBehaviour
 {
     public GameObject timer;
     public GameObject player;
+    public FirewallScript FireWall;
 
     public CinemachineCamera _camera;
 
@@ -35,7 +36,7 @@ public class level_end : MonoBehaviour
             player.GetComponent<pause>().NoPause = true;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            Debug.Log("ay");
+            FireWall.isActive = false;
 
             fade.GetComponent<Animator>().SetBool("fade", true);
             coin.GetComponent<Animator>().SetBool("fade", true);
