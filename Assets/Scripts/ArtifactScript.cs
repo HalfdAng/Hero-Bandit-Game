@@ -45,7 +45,8 @@ public class ArtifactScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    public void PickUp()
     {
         _started = true;
     }

@@ -10,7 +10,7 @@ public class item_pickup : MonoBehaviour
 
     private InputActions _interact;
 
-    public GameObject artifact;
+    public ArtifactScript artifact;
 
     
     public bool _coin;
@@ -67,7 +67,7 @@ public class item_pickup : MonoBehaviour
         {
             if (_interact.interact == true)
             {
-                Destroy(artifact);
+                artifact.PickUp();
                 prompt.SetBool("fade", false);
                 Debug.Log("aoga");
             }
