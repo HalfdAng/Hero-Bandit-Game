@@ -4,6 +4,9 @@ public class StartScreen : MonoBehaviour
 {
     public GameObject _pause;
 
+    public AudioSource buttonSoundConrtoller;
+    public AudioClip buttonClip;
+
     [Header("Animations")]
     public Animator background;
     public Animator gameName;
@@ -27,6 +30,7 @@ public class StartScreen : MonoBehaviour
 
     public void StartGame()
     {
+        buttonSoundConrtoller.PlayOneShot(buttonClip);
         Time.timeScale = 1f;
         _pause.GetComponent<pause>().NoPause = false;
         background.SetBool("fade", true);

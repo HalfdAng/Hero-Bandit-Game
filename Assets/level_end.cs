@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class level_end : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip endingClip;
     public GameObject timer;
     public GameObject player;
     public FirewallScript FireWall;
@@ -17,6 +19,8 @@ public class level_end : MonoBehaviour
     public Animator time;
 
     public Animator endButtons;
+
+    public bool stopMainSong;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,6 +36,9 @@ public class level_end : MonoBehaviour
     {
         if (other.transform.CompareTag("Player"))
         {
+            stopMainSong = true;
+            audioSource.PlayOneShot(endingClip);
+
             player.GetComponent<PlayerController>().CharacterActive = false;
             player.GetComponent<pause>().NoPause = true;
             Cursor.visible = true;

@@ -5,6 +5,11 @@ public class PlayerController : MonoBehaviour
     private InputActions _input;
     public bool CharacterActive = true;
 
+    public AudioSource jumpController;
+    public AudioClip jumpClip;
+    public AudioSource slideController;
+    public AudioClip slideClip;
+
     [Header("Death")]
     public bool isDead;
 
@@ -176,12 +181,14 @@ public class PlayerController : MonoBehaviour
             if (!_isSliding)
             {
                 _rigidbody.linearVelocity += Vector3.up * Mathf.Sqrt(2 * Gravity * jumpHeight);
+                jumpController.PlayOneShot(jumpClip);
             }
             else
             {
                 if (_rigidbody.linearVelocity.magnitude > 1)
                 {
                     _rigidbody.linearVelocity += Vector3.up * Mathf.Sqrt(2 * Gravity * jumpHeight) * slideJumpMultiplier;
+                    jumpController.PlayOneShot(jumpClip);
                 }
                 // Add bonus speed
                 StopSliding();
@@ -225,6 +232,7 @@ public class PlayerController : MonoBehaviour
 
     void StartSliding()
     {
+        slideController.PlayOneShot(slideClip);
         _slideInitiated = false;
         _timeSinceSlideInitiation = 0;
         SetIsSliding(true);

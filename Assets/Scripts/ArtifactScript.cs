@@ -13,7 +13,7 @@ public class ArtifactScript : MonoBehaviour
     public float upwardsMovement = 3f;
 
     private Vector3 _startPosition;
-    private bool _started = false;
+    public bool _started = false;
     private float _timePassed = 0f;
     private Color _color;
 
