@@ -53,11 +53,6 @@ public class item_pickup : MonoBehaviour
         if(other.transform.CompareTag("artifact"))
         {
             prompt.SetBool("fade", true);
-            if (_interact.interact == true)
-            {
-                Destroy(other.gameObject);
-                Debug.Log("aoga");
-            }
         }
     }
 
